@@ -13,8 +13,13 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/user/login")
-    public String login(String account){
-        String result = userService.getByAccount(account);
-        return result;
+    public String login(String account, String password){
+        return userService.login(account, password);
     }
+
+    @GetMapping("/user/findByName")
+    public String findByName(String name){
+        return userService.getByName(name);
+    }
+
 }

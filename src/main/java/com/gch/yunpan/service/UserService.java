@@ -4,7 +4,7 @@ import com.gch.yunpan.entity.User;
 
 public interface UserService {
 
-    String getByAccount(String account);
+    String login(String account, String password);
 
     String getByName(String name);
 
