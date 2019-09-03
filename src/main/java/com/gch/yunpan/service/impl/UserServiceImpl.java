@@ -23,7 +23,9 @@ public class UserServiceImpl implements UserService {
             result.put("res", "success");
             result.put("data", user);
         }
-        result.put("res", "fail");
+        else {
+            result.put("res", "fail");
+        }
         return JSONObject.toJSONString(result);
     }
 
@@ -37,18 +39,42 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int insert(User user) {
-        return 0;
+    public String insert(User user) {
+        JSONObject result = new JSONObject();
+        int count = userMapper.insert(user);
+        if(count > 0){
+            result.put("res", "success");
+        }
+        else{
+            result.put("res", "fail");
+        }
+        return result.toJSONString();
     }
 
     @Override
-    public int update(User user) {
-        return 0;
+    public String update(User user) {
+        JSONObject result = new JSONObject();
+        int count = userMapper.update(user);
+        if(count > 0){
+            result.put("res", "success");
+        }
+        else{
+            result.put("res", "fail");
+        }
+        return result.toJSONString();
     }
 
     @Override
-    public int delete(int id) {
-        return 0;
+    public String delete(int id) {
+        JSONObject result = new JSONObject();
+        int count = userMapper.delete(id);
+        if(count > 0){
+            result.put("res", "success");
+        }
+        else{
+            result.put("res", "fail");
+        }
+        return result.toJSONString();
     }
 
 }

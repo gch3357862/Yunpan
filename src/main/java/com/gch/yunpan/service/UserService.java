@@ -8,10 +8,10 @@ public interface UserService {
 
     String getByName(String name);
 
-    int insert(User user);
+    String insert(User user);
 
-    int update(User user);
+    String update(User user);
 
-    int delete(int id);
+    String delete(int id);
 
 }
