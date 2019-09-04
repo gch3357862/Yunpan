@@ -10,7 +10,9 @@ public interface UserService {
 
     String insert(User user);
 
-    String update(User user);
+    String updatePassword(User user);
+
+    String updateName(User user);
 
     String delete(int id);
 

@@ -52,9 +52,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String update(User user) {
+    public String updatePassword(User user) {
         JSONObject result = new JSONObject();
-        int count = userMapper.update(user);
+        int count = userMapper.updatePassword(user);
+        if(count > 0){
+            result.put("res", "success");
+        }
+        else{
+            result.put("res", "fail");
+        }
+        return result.toJSONString();
+    }
+
+    @Override
+    public String updateName(User user) {
+        JSONObject result = new JSONObject();
+        int count = userMapper.updateName(user);
         if(count > 0){
             result.put("res", "success");
         }

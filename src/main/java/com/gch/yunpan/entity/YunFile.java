@@ -10,15 +10,17 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements Serializable {
+public class YunFile implements Serializable {
 
     private int id;
 
-    private String account;
-
-    private String password;
+    private int ownerId;
 
     private String name;
+
+    private int size;
+
+    private byte[] data;
 
     private Date createTime;
 
