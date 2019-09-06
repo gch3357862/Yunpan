@@ -8,7 +8,7 @@ public interface UserService {
 
     String getByName(String name);
 
-    String insert(User user);
+    String add(User user);
 
     String updatePassword(User user);
 

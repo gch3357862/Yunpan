@@ -14,7 +14,7 @@ public class FileController {
     @Resource
     private YunFileService fileService;
 
-    @GetMapping("/file/find")
+    @GetMapping("/file/get")
     public String get(int ownerId) {
         return fileService.getByOwnerId(ownerId);
     }

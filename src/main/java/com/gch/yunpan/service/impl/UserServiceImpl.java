@@ -19,14 +19,14 @@ public class UserServiceImpl implements UserService {
     public String login(String account, String password) {
         JSONObject result = new JSONObject();
         User user = userMapper.selectByAccount(account);
-        if(user != null && user.getPassword().equals(password)){
+        if(user != null && user.getPassword().equals(password)) {
             result.put("res", "success");
             result.put("data", user);
         }
         else {
             result.put("res", "fail");
         }
-        return JSONObject.toJSONString(result);
+        return  result.toJSONString();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String insert(User user) {
+    public String add(User user) {
         JSONObject result = new JSONObject();
         int count = userMapper.insert(user);
         if(count > 0){
@@ -68,10 +68,10 @@ public class UserServiceImpl implements UserService {
     public String updateName(User user) {
         JSONObject result = new JSONObject();
         int count = userMapper.updateName(user);
-        if(count > 0){
+        if(count > 0) {
             result.put("res", "success");
         }
-        else{
+        else {
             result.put("res", "fail");
         }
         return result.toJSONString();
@@ -81,10 +81,10 @@ public class UserServiceImpl implements UserService {
     public String delete(int id) {
         JSONObject result = new JSONObject();
         int count = userMapper.delete(id);
-        if(count > 0){
+        if(count > 0) {
             result.put("res", "success");
         }
-        else{
+        else {
             result.put("res", "fail");
         }
         return result.toJSONString();

@@ -12,12 +12,6 @@ public interface YunFileMapper {
 
     List<YunFile> selectByOwnerId(int ownerId);
 
-//    List<File> selectByName(String name);
-//
     int insert(YunFile file);
-//
-//    int updateName(File file);
-//
-//    int delete(int id);
 
 }

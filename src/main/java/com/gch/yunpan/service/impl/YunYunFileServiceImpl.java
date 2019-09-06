@@ -39,27 +39,30 @@ public class YunYunFileServiceImpl implements YunFileService {
         yunFile.setName(yunFileRequest.getData().getOriginalFilename());
         yunFile.setSize((int)yunFileRequest.getData().getSize());
         int count = yunFileMapper.insert(yunFile);
-        if(count > 0){
+        if(count > 0) {
             result.put("res", "success");
         }
-        else{
+        else {
             result.put("res", "fail");
         }
         return result.toJSONString();
     }
 
     @Override
+    // 输出流关闭可能出现问题
     public String download(YunFileRequest yunFileRequest){
+        JSONObject result = new JSONObject();
         YunFile yunFile = yunFileMapper.selectById(yunFileRequest.getId());
         File file = new File(yunFileRequest.getLocation() + yunFile.getName());
         try {
-            file.createNewFile();
-            OutputStream outputStream = new FileOutputStream(file);
-            outputStream.write(yunFile.getData());
+            if(file.createNewFile()) {
+                OutputStream outputStream = new FileOutputStream(file);
+                outputStream.write(yunFile.getData());
+                outputStream.close();
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            result.put("res", "fail");
         }
-        JSONObject result = new JSONObject();
         result.put("res", "success");
         return result.toJSONString();
     }

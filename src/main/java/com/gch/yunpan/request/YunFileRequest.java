@@ -13,6 +13,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class YunFileRequest implements Serializable {
 
+    private static final long serialVersionUID = 7927313169894471423L;
+
     private int id;
 
     private int ownerId;
