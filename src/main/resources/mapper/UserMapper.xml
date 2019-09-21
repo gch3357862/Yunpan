@@ -10,7 +10,7 @@
     </resultMap>
 
     <select id="selectByAccount" resultType="com.gch.yunpan.entity.User">
-        SELECT *
+        SELECT id, account, password, name, create_time as `createTime`
         FROM user
         WHERE account = #{account}
     </select>
