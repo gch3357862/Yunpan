@@ -25,7 +25,7 @@
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        INSERT INTO user(account, password, `name`, create_time)
+        INSERT INTO user(account, password, name, create_time)
         VALUES (#{account}, #{password}, #{name}, NOW())
     </insert>
 

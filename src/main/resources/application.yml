@@ -9,6 +9,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   flyway:
     locations: classpath:db
+    enabled: true
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

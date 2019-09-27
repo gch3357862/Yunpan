@@ -1,18 +1,16 @@
 package com.gch.yunpan.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public class YunFile implements Serializable {
 
-    private static final long serialVersionUID = 8500494203176065445L;
+    private static final long serialVersionUID = -6400404080755072989L;
 
     private int id;
 
