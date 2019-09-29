@@ -3,7 +3,6 @@ package com.gch.yunpan.controller;
 import com.gch.yunpan.entity.User;
 import com.gch.yunpan.service.UserService;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 
 @CrossOrigin("http://localhost:8080")
