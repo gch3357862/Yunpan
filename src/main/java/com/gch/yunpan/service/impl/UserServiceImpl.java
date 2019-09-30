@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.gch.yunpan.entity.User;
 import com.gch.yunpan.mapper.UserMapper;
 import com.gch.yunpan.service.UserService;
+import com.gch.yunpan.utils.JsonUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,8 +21,7 @@ public class UserServiceImpl implements UserService {
         JSONObject result = new JSONObject();
         User user = userMapper.selectByAccount(account);
         if(user != null && user.getPassword().equals(password)) {
-            result.put("res", "success");
-            result.put("data", user);
+            return JsonUtil.createSuccessResponse(user);
         }
         else {
             result.put("res", "fail");
