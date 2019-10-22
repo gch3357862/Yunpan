@@ -5,14 +5,14 @@ import com.gch.yunpan.user.service.UserService;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin("http://127.0.0.1:8080")
 @RestController
 public class UserController {
 
     @Resource
     private UserService userService;
 
-    @GetMapping("user/login")
+    @GetMapping("/user/login")
     public String login(String account, String password) {
         return userService.login(account, password);
     }

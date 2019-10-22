@@ -1,12 +1,10 @@
 package com.gch.yunpan.user.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.gch.yunpan.user.entity.User;
 import com.gch.yunpan.user.mapper.UserMapper;
 import com.gch.yunpan.user.service.UserService;
 import com.gch.yunpan.common.utils.JsonUtil;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -18,76 +16,64 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String login(String account, String password) {
-        JSONObject result = new JSONObject();
         User user = userMapper.selectByAccount(account);
-        if(user != null && user.getPassword().equals(password)) {
+        if(user == null ) {
+            return JsonUtil.createFailResponse("Wrong Account.");
+        } else if(!user.getPassword().equals(password)) {
+            return JsonUtil.createFailResponse("Wrong Password.");
+        } else {
             return JsonUtil.createSuccessResponse(user);
         }
-        else {
-            result.put("res", "fail");
-        }
-        return  result.toJSONString();
     }
 
     @Override
     public String getByName(String name) {
-        JSONObject result = new JSONObject();
         List<User> list = userMapper.selectByName(name);
-        result.put("data", list);
-        result.put("total", list.size());
-        return result.toJSONString();
+        return JsonUtil.createSuccessResponse(list);
     }
 
     @Override
     public String add(User user) {
-        JSONObject result = new JSONObject();
         int count = userMapper.insert(user);
         if(count > 0){
-            result.put("res", "success");
+            return JsonUtil.createSuccessResponse();
         }
         else{
-            result.put("res", "fail");
+            return JsonUtil.createFailResponse("Unknown Error.Failed to add user.");
         }
-        return result.toJSONString();
     }
 
     @Override
     public String updatePassword(User user) {
-        JSONObject result = new JSONObject();
         int count = userMapper.updatePassword(user);
         if(count > 0){
-            result.put("res", "success");
+            return JsonUtil.createSuccessResponse();
         }
         else{
-            result.put("res", "fail");
+            return JsonUtil.createFailResponse("Unknown Error.Failed to update password.");
         }
-        return result.toJSONString();
     }
 
     @Override
     public String updateName(User user) {
-        JSONObject result = new JSONObject();
         int count = userMapper.updateName(user);
         if(count > 0) {
-            result.put("res", "success");
+            return JsonUtil.createSuccessResponse();
         }
         else {
-            result.put("res", "fail");
+            return JsonUtil.createFailResponse("Unknown Error.Failed to update name.");
         }
-        return result.toJSONString();
     }
 
     @Override
     public String delete(int id) {
-        JSONObject result = new JSONObject();
         int count = userMapper.delete(id);
         if(count > 0) {
-            result.put("res", "success");
+            return JsonUtil.createSuccessResponse();
         }
         else {
-            result.put("res", "fail");
+            return JsonUtil.createFailResponse("Error.User is already deleted.");
         }
-        return result.toJSONString();
     }
 
 }

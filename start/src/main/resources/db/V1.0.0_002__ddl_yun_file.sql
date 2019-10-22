@@ -11,6 +11,5 @@ CREATE TABLE `yun_file` (
     CONSTRAINT `file_fk_1` FOREIGN KEY (`owner_id`) REFERENCES `user` (`id`)
 )
 COMMENT = '文件表'
-COLLATE = 'utf8_general_ci'
 ENGINE = InnoDB
 ;
