@@ -26,7 +26,7 @@ public class YunYunFileServiceImpl implements YunFileService {
     }
 
     @Override
-    public String insert(YunFileRequest yunFileRequest) {
+    public String upload(YunFileRequest yunFileRequest) {
         JSONObject result = new JSONObject();
         YunFile yunFile = new YunFile();
         yunFile.setOwnerId(yunFileRequest.getOwnerId());

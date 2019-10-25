@@ -19,9 +19,9 @@ public class FileController {
         return fileService.getByOwnerId(ownerId);
     }
 
-    @PostMapping("/file/add")
-    public String add(YunFileRequest yunFileRequest) {
-        return fileService.insert(yunFileRequest);
+    @PostMapping("/file/upload")
+    public String upload(YunFileRequest yunFileRequest) {
+        return fileService.upload(yunFileRequest);
     }
 
     @PostMapping("/file/download")

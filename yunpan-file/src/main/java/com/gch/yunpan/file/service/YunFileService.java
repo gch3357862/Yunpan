@@ -6,7 +6,7 @@ public interface YunFileService {
 
     String getByOwnerId(int ownerId);
 
-    String insert(YunFileRequest yunFileRequest);
+    String upload(YunFileRequest yunFileRequest);
 
     String download(YunFileRequest yunFileRequest);
 
