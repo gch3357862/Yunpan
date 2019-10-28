@@ -5,7 +5,7 @@ import com.gch.yunpan.user.service.UserService;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
-@CrossOrigin("http://127.0.0.1:8080")
+@CrossOrigin
 @RestController
 public class UserController {
 

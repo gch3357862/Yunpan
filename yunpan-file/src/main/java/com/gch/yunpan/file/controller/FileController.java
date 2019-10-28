@@ -2,12 +2,13 @@ package com.gch.yunpan.file.controller;
 
 import com.gch.yunpan.file.request.YunFileRequest;
 import com.gch.yunpan.file.service.YunFileService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
 
+@CrossOrigin
 @RestController
 public class FileController {
 
