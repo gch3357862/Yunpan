@@ -18,7 +18,7 @@ public class YunFile implements Serializable {
 
     private String name;
 
-    private int size;
+    private long size;
 
     private byte[] data;
 

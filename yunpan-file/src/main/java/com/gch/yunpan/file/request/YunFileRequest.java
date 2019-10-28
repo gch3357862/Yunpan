@@ -19,7 +19,7 @@ public class YunFileRequest implements Serializable {
 
     private String name;
 
-    private int size;
+    private long size;
 
     private MultipartFile data;
 

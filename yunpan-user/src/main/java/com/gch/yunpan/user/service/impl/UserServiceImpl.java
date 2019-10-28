@@ -35,10 +35,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public String add(User user) {
         int count = userMapper.insert(user);
-        if(count > 0){
+        if(count > 0) {
             return JsonUtil.createSuccessResponse();
-        }
-        else{
+        } else {
             return JsonUtil.createFailResponse("Unknown Error.Failed to add user.");
         }
     }
@@ -46,10 +45,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updatePassword(User user) {
         int count = userMapper.updatePassword(user);
-        if(count > 0){
+        if(count > 0) {
             return JsonUtil.createSuccessResponse();
         }
-        else{
+        else {
             return JsonUtil.createFailResponse("Unknown Error.Failed to update password.");
         }
     }
@@ -59,8 +58,7 @@ public class UserServiceImpl implements UserService {
         int count = userMapper.updateName(user);
         if(count > 0) {
             return JsonUtil.createSuccessResponse();
-        }
-        else {
+        } else {
             return JsonUtil.createFailResponse("Unknown Error.Failed to update name.");
         }
     }
@@ -70,8 +68,7 @@ public class UserServiceImpl implements UserService {
         int count = userMapper.delete(id);
         if(count > 0) {
             return JsonUtil.createSuccessResponse();
-        }
-        else {
+        } else {
             return JsonUtil.createFailResponse("Error.User is already deleted.");
         }
     }

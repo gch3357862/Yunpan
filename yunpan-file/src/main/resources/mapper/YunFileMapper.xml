@@ -5,7 +5,7 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="owner_id" jdbcType="INTEGER" property="ownerId"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="size" jdbcType="INTEGER" property="size"/>
+        <result column="size" jdbcType="BIGINT" property="size"/>
         <result column="data" javaType="byte[]" jdbcType="BLOB" property="data" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
@@ -26,7 +26,7 @@
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        INSERT INTO yun_file(owner_id, `name`, size, data, create_time)
+        INSERT INTO yun_file(owner_id, `name`, `size`, `data`, create_time)
         VALUES (#{ownerId}, #{name}, #{size},
                 #{data, javaType=byte[], jdbcType=BLOB, typeHandler=org.apache.ibatis.type.BlobTypeHandler},
                 NOW())

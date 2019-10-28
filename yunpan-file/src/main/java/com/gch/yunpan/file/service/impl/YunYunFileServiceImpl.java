@@ -1,13 +1,15 @@
 package com.gch.yunpan.file.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
+import com.gch.yunpan.common.utils.JsonUtil;
 import com.gch.yunpan.file.entity.YunFile;
 import com.gch.yunpan.file.mapper.YunFileMapper;
 import com.gch.yunpan.file.request.YunFileRequest;
 import com.gch.yunpan.file.service.YunFileService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 @Service
@@ -18,39 +20,32 @@ public class YunYunFileServiceImpl implements YunFileService {
 
     @Override
     public String getByOwnerId(int ownerId) {
-        JSONObject result = new JSONObject();
         List<YunFile> list = yunFileMapper.selectByOwnerId(ownerId);
-        result.put("data", list);
-        result.put("total", list.size());
-        return result.toJSONString();
+        return JsonUtil.createSuccessResponse(list);
     }
 
     @Override
     public String upload(YunFileRequest yunFileRequest) {
-        JSONObject result = new JSONObject();
         YunFile yunFile = new YunFile();
         yunFile.setOwnerId(yunFileRequest.getOwnerId());
         try {
             yunFile.setData(yunFileRequest.getData().getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            return JsonUtil.createFailResponse("Error uploading file.");
         }
         yunFile.setName(yunFileRequest.getData().getOriginalFilename());
-        yunFile.setSize((int)yunFileRequest.getData().getSize());
+        yunFile.setSize(yunFileRequest.getData().getSize());
         int count = yunFileMapper.insert(yunFile);
         if(count > 0) {
-            result.put("res", "success");
+            return JsonUtil.createSuccessResponse();
         }
         else {
-            result.put("res", "fail");
+            return JsonUtil.createFailResponse("Error uploading file.");
         }
-        return result.toJSONString();
     }
 
     @Override
-    // 输出流关闭可能出现问题
-    public String download(YunFileRequest yunFileRequest){
-        JSONObject result = new JSONObject();
+    public String download(YunFileRequest yunFileRequest) {
         YunFile yunFile = yunFileMapper.selectById(yunFileRequest.getId());
         File file = new File(yunFileRequest.getLocation() + yunFile.getName());
         try {
@@ -59,11 +54,10 @@ public class YunYunFileServiceImpl implements YunFileService {
                 outputStream.write(yunFile.getData());
                 outputStream.close();
             }
-        } catch (IOException e) {
-            result.put("res", "fail");
+        } catch (Exception e) {
+            return JsonUtil.createFailResponse("Error downloading file.");
         }
-        result.put("res", "success");
-        return result.toJSONString();
+        return JsonUtil.createSuccessResponse();
     }
 
 }
