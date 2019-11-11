@@ -11,4 +11,10 @@
 	<version>1.0.0</version>
 	<name>yunpan-common</name>
 
+	<dependencies>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency>
+	</dependencies>
 </project>
